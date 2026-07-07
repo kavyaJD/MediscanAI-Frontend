@@ -22,6 +22,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import PredictionHistory from "../components/PredictionHistory";
 
 interface Report {
   disease: string;
@@ -550,6 +551,8 @@ const COLORS = [
         </div>
 
       </div>
+
+      <PredictionHistory />
 
       <Footer />
 

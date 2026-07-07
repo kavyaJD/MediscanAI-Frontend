@@ -13,6 +13,7 @@ import {
 import jsPDF from "jspdf";
 import AIHealthAssistant from "../components/AIHealthAssistant";
 
+
 function Result() {
   const { state } = useLocation();
   const downloadReport = () => {
