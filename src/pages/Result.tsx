@@ -159,6 +159,27 @@ function Result() {
 
   const info = diseaseInfo[state.prediction];
 
+  const report = {
+  disease: state.prediction,
+  confidence: state.confidence,
+  symptoms: state.symptoms,
+  date: new Date().toLocaleString(),
+};
+
+const existing =
+  JSON.parse(localStorage.getItem("predictionHistory") || "[]");
+
+if (
+  existing.length === 0 ||
+  existing[0].date !== report.date
+) {
+  existing.unshift(report);
+  localStorage.setItem(
+    "predictionHistory",
+    JSON.stringify(existing)
+  );
+}
+
   const confidenceStatus =
     state.confidence >= 75
       ? "High Confidence"
@@ -175,6 +196,13 @@ function Result() {
       <div className="min-h-screen bg-blue-50 py-10">
 
         <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-xl p-10">
+
+            <Link
+  to="/dashboard"
+  className="hover:text-blue-600"
+>
+  Dashboard
+</Link>
 
           {/* Header */}
 

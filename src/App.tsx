@@ -4,11 +4,13 @@ import Home from "./pages/Home";
 import Diagnosis from "./pages/Diagnosis";
 import Result from "./pages/Result";
 import Analysis from "./pages/Analysis";
+import Dashboard from "./pages/Dashboard";
 
 
 function App() {
   return (
     <BrowserRouter>
+    <Route path="/dashboard" element={<Dashboard />} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/diagnosis" element={<Diagnosis />} />
