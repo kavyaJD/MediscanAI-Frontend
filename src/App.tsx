@@ -6,20 +6,21 @@ import Result from "./pages/Result";
 import Analysis from "./pages/Analysis";
 import Dashboard from "./pages/Dashboard";
 
-
 function App() {
   return (
     <BrowserRouter>
-    <Route path="/dashboard" element={<Dashboard />} />
       <Routes>
+
         <Route path="/" element={<Home />} />
+
+        <Route path="/dashboard" element={<Dashboard />} />
+
         <Route path="/diagnosis" element={<Diagnosis />} />
-        <Route path="/result" element={<Result />}
-         />
-         <Route
- path="/analysis"
- element={<Analysis />}
-/>
+
+        <Route path="/result" element={<Result />} />
+
+        <Route path="/analysis" element={<Analysis />} />
+
       </Routes>
     </BrowserRouter>
   );
