@@ -11,6 +11,7 @@ import {
   ResponsiveContainer
 } from "recharts";
 import jsPDF from "jspdf";
+import AIHealthAssistant from "../components/AIHealthAssistant";
 
 function Result() {
   const { state } = useLocation();
@@ -581,6 +582,8 @@ if (
             </p>
 
           </div>
+
+          <AIHealthAssistant disease={state.prediction} />
 
 
 
