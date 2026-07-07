@@ -305,6 +305,79 @@ if (
 
           </div>
 
+          {/* AI Health Risk Assessment */}
+
+<div className="mt-10 bg-white border rounded-2xl shadow-lg p-8">
+
+  <h2 className="text-2xl font-bold text-blue-700 mb-6">
+    🧠 AI Health Risk Assessment
+  </h2>
+
+  <div className="flex justify-between items-center">
+
+    <span className="text-lg font-semibold">
+      Risk Level
+    </span>
+
+    <span
+      className={`px-4 py-2 rounded-full text-white ${
+        Number(state.confidence) >= 80
+          ? "bg-red-500"
+          : Number(state.confidence) >= 60
+          ? "bg-yellow-500"
+          : "bg-green-500"
+      }`}
+    >
+      {Number(state.confidence) >= 80
+        ? "High"
+        : Number(state.confidence) >= 60
+        ? "Moderate"
+        : "Low"}
+    </span>
+
+  </div>
+
+  <div className="w-full bg-gray-200 rounded-full h-5 mt-5">
+
+    <div
+      className={`h-5 rounded-full ${
+        Number(state.confidence) >= 80
+          ? "bg-red-500"
+          : Number(state.confidence) >= 60
+          ? "bg-yellow-500"
+          : "bg-green-500"
+      }`}
+      style={{
+        width: `${state.confidence}%`
+      }}
+    />
+
+  </div>
+
+  <div className="mt-6 bg-blue-50 rounded-xl p-5">
+
+    <h3 className="font-bold text-blue-700">
+      🤖 AI Recommendation
+    </h3>
+
+    <p className="mt-3 text-gray-700">
+
+      {Number(state.confidence) >= 80 &&
+        "The AI detected a strong match for the predicted condition. Please consult a healthcare professional immediately."}
+
+      {Number(state.confidence) >= 60 &&
+        Number(state.confidence) < 80 &&
+        "The AI found a moderate match. Monitor your symptoms and seek medical advice if they continue."}
+
+      {Number(state.confidence) < 60 &&
+        "The prediction confidence is relatively low. Continue observing your symptoms and consult a doctor if necessary."}
+
+    </p>
+
+  </div>
+
+</div>
+
 
 {/* Top 3 Predictions */}
 
