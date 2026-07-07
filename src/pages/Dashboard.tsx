@@ -2,6 +2,17 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SummaryCard from "../components/SummaryCard";
 import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+} from "recharts";
+import {
   FaFileMedical,
   FaHeartbeat,
   FaChartLine,
@@ -31,6 +42,20 @@ function Dashboard() {
   }, []);
 
   const latest = reports[0];
+
+  const diseaseData = reports.map((report) => ({
+  name: report.disease,
+  confidence: report.confidence,
+}));
+
+const COLORS = [
+  "#2563eb",
+  "#16a34a",
+  "#dc2626",
+  "#f59e0b",
+  "#9333ea",
+  "#0ea5e9",
+];
 
   const averageConfidence =
     reports.length > 0
@@ -324,6 +349,93 @@ function Dashboard() {
             )}
 
           </div>
+
+          {/* Analytics */}
+
+<div className="grid lg:grid-cols-2 gap-8 mt-10">
+
+  {/* Pie Chart */}
+
+  <div className="bg-white rounded-2xl shadow-lg p-8">
+
+    <h2 className="text-2xl font-bold text-blue-700 mb-6">
+
+      🥧 Disease Distribution
+
+    </h2>
+
+    <div className="h-80">
+
+      <ResponsiveContainer width="100%" height="100%">
+
+        <PieChart>
+
+          <Pie
+            data={diseaseData}
+            dataKey="confidence"
+            nameKey="name"
+            outerRadius={110}
+            label
+          >
+
+            {diseaseData.map((_, index) => (
+
+              <Cell
+                key={index}
+                fill={COLORS[index % COLORS.length]}
+              />
+
+            ))}
+
+          </Pie>
+
+          <Tooltip />
+
+        </PieChart>
+
+      </ResponsiveContainer>
+
+    </div>
+
+  </div>
+
+  {/* Bar Chart */}
+
+  <div className="bg-white rounded-2xl shadow-lg p-8">
+
+    <h2 className="text-2xl font-bold text-blue-700 mb-6">
+
+      📈 Prediction Confidence
+
+    </h2>
+
+    <div className="h-80">
+
+      <ResponsiveContainer width="100%" height="100%">
+
+        <BarChart data={diseaseData}>
+
+          <XAxis dataKey="name" />
+
+          <YAxis />
+
+          <Tooltip />
+
+          <Bar
+            dataKey="confidence"
+            fill="#2563eb"
+            radius={[8, 8, 0, 0]}
+          />
+
+        </BarChart>
+
+      </ResponsiveContainer>
+
+    </div>
+
+  </div>
+
+</div>
 
                   {/* Health Insights */}
 
